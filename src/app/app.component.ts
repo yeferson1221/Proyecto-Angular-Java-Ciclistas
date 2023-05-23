@@ -1,5 +1,6 @@
 import { Component, } from '@angular/core';
 import { User } from '../models/users.model';
+import { LoginUserService } from './service/login.user.service'
 import { CyclingUsersService } from './service/cycling.users.service';
 
 @Component({
@@ -10,8 +11,9 @@ import { CyclingUsersService } from './service/cycling.users.service';
 export class AppComponent  {
   title = 'cycling-app';
   users: User[] = []; // Declara la propiedad para almacenar la lista de usuarios
-
-  constructor(private userApiService: CyclingUsersService) { }
+  token: string = "token";
+  constructor(private userApiService: CyclingUsersService,
+              private loginUserService: LoginUserService) { }
 
   ngOnInit(): void {
     this.loadUsers();
@@ -19,9 +21,9 @@ export class AppComponent  {
 
   private loadUsers(): void {
     // Obtén el token de autenticación (de tu sistema de autenticación)
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwiaWF0IjoxNjg0ODA2NTYzLCJzdWIiOiJ5ZWZlckBnbWFpbC5jb20iLCJpc3MiOiJNYWluIiwiZXhwIjoxNjg1NDExMzYzfQ.xqVxouTh7n_dizJ7z52SEh4mQ3J5q2Arr4AfEtrYX04';
+    this.token = this.loginUserService.getToken();
 
-    this.userApiService.getUsers(token)
+    this.userApiService.getUsers(this.token)
       .subscribe(
         (data) => {
           console.log('Users:', data);
