@@ -8,7 +8,8 @@
               <div class="card-body text-center">
                   <span class="titulo">LIST USERS</span>
                   <div class="mb-3">
-                    <button class="btn btn-info float-start" routerLink="/crear-empleado">NUEVO</button>
+                    <button class="btn btn-info float-start" routerLink="">NUEVO</button>
+                    <button  class="btn btn-danger float-start" routerLink="/login" (click)="logout()" >SALIR</button>
                 </div>
                   <table *ngIf="users.length > 0" class="table table-striped mt-3">
                       <thead>
@@ -28,7 +29,7 @@
                         </tr>
                       </tbody>
                     </table>
-                    <h5 style="text-align: start; margin-top: 10px;" *ngIf="users.length == 0">No hay productos para mostrar</h5>
+                    <h5 style="text-align: start; margin-top: 10px;" *ngIf="users.length == 0">No hay usuarios para mostrar</h5>
               </div>
           </div>
       </div>

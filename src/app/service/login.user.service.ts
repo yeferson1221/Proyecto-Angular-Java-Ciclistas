@@ -14,7 +14,7 @@ export class LoginUserService {
 
   login(credentials: any): Observable<any> {
    // const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post<any>(this.apiUrl, credentials, { responseType: 'text' as 'json' });
+    return this.http.post<any>(this.apiUrl, credentials,{ responseType: 'text' as 'json' });
   }
 
   setToken(token: string): void {

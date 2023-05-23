@@ -35,4 +35,8 @@ export class ListUsersComponent {
       );
   }
 
+  public logout(): void {
+    this.loginUserService.removeToken();
+  }
+
 }
