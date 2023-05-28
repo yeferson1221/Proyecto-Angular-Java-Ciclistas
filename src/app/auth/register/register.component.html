@@ -1,1 +1,31 @@
-<p>register works!</p>
+
+<div class="container">
+    <h2>Registro de Usuarios</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="fullName">Nombre completo:</label>
+            <input type="text" class="form-control" id="fullName" formControlName="fullName" required>
+            <div *ngIf="registerForm.get('fullName')?.invalid && (registerForm.get('fullName')?.dirty || registerForm.get('fullName')?.touched)">
+                <div *ngIf="registerForm.get('fullName')?.hasError('required')">El nombre completo es requerido.</div>
+              </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" class="form-control" id="email" formControlName="email" required>
+            <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+                <div *ngIf="registerForm.get('email')?.hasError('required')">El correo electrónico es requerido.</div>
+                <div *ngIf="registerForm.get('email')?.hasError('email')">El correo electrónico no es válido.</div>
+              </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" class="form-control" id="password" formControlName="password" required>
+            <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+                <div *ngIf="registerForm.get('password')?.hasError('required')">La contraseña es requerida.</div>
+                <div *ngIf="registerForm.get('password')?.hasError('minlength')">La contraseña debe tener al menos 6 caracteres.</div>
+              </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success" >Registrar</button>
+    </form>
+</div>
